@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(248, 228, 202);
+    font-family: monospace;
+}
+
+.page-header {
+    color: black;
+}
+.req-container {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    color: black;
+    border: 2px solid blue;
+    border-bottom: 0;
+}
+
+.text-box {
+    flex: 1;
+    padding: 5px;
+}
+
+.bottom {
+    border-bottom: 2px solid blue;
+}
+
+.top-row {
+    color: red;
+}

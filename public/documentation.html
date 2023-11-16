@@ -1,13 +1,160 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
         <title>JMD Docs</title>
     </head>
     <body>
-        <h1>JMD</h1>
-        <p>
-            Welcome to the JMD API Docs!
-            This API stores data on a variety of movies.
-        </p>
+        <div class="page-header">
+            <h1>JMD MOVIE DATABASE API DOCS</h1>
+            <p>
+                Welcome to the JMD API Docs!
+                This API stores data on a variety of movies. The URL endpoints below outline all possible requests.
+            </p>
+        </div>
+        <div class="page-body">
+            <div class="req-container">
+                <div class="text-box">
+                    <p class="top-row">METHOD & URL</p>
+                </div>
+                <div class="text-box">
+                    <p class="top-row">FUNCTIONALITY</p>
+                </div>
+                <div class="text-box">
+                    <p class="top-row">REQUEST BODY FORMAT</p>
+                </div>
+                <div class="text-box">
+                    <p class="top-row">RESPONSE BODY FORMAT (ex.)</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>GET /movies</p>
+                </div>
+                <div class="text-box">
+                    <p>Returns a list of ALL movies.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>JSON Object {"Movies" : [List]}</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>GET /movies/:title</p>
+                </div>
+                <div class="text-box">
+                    <p>Returns data about a single movie.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>JSON Object {"Movies" : {"title" : "data"}}</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>GET /genres/:genreName</p>
+                </div>
+                <div class="text-box">
+                    <p>Returns data about a genre by name.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>JSON Object {"genreTitle": "desc"}</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>GET /directors/:directorName</p>
+                </div>
+                <div class="text-box">
+                    <p>Returns data about a director by name.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>JSON Object {"directorName" : "data"}</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>POST /users</p>
+                </div>
+                <div class="text-box">
+                    <p>Creates a user account.</p>
+                </div>
+                <div class="text-box">
+                    <p>JSON Object containing a username and password.<br>{"username" : "data",<br>"password" : "data"}</p>
+                </div>
+                <div class="text-box">
+                    <p>Text confirmation that the new user has been created with the given credentials.</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>PUT /users/:id</p>
+                </div>
+                <div class="text-box">
+                    <p>Allows user to update profile by ID.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>Text confirmation that the user's ID has been updated to the given value.</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>POST /users/:id/:title</p>
+                </div>
+                <div class="text-box">
+                    <p>Adds a movie to a user's favorites list.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>Text confirmation that the indicated movie has been added to the user's favorites list.</p>
+                </div>
+            </div>
+            <div class="req-container">
+                <div class="text-box">
+                    <p>DELETE /users/:id/:title</p>
+                </div>
+                <div class="text-box">
+                    <p>Removes a movie from a user's favorites list.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>Text confirmation that the indicated movie has been removed from the user's favorites list.</p>
+                </div>
+            </div>
+            <div class="req-container bottom">
+                <div class="text-box">
+                    <p>DELETE /users/:id</p>
+                </div>
+                <div class="text-box">
+                    <p>Deletes a user account.</p>
+                </div>
+                <div class="text-box">
+                    <p>N/A</p>
+                </div>
+                <div class="text-box">
+                    <p>Text confirmation that the indicated user account has been successfully deleted.</p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

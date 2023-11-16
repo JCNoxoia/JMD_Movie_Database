@@ -69,10 +69,33 @@ let topMovies = [
 //Server logging
 app.use(morgan('common'));
 
-//GET requests:
+//CREATE requests
+app.post('/users', (req, res) => res.send('Text confirmation that the new user has been created.'));
+
+app.post('/users/:id/:title', (req, res) => res.send('Text confirmation that the indicated movie has been added to the favorites list.'));
+
+
+//RETRIEVE requests:
+app.get('/', (req, res) => res.send('Welcome to the JMD Movie Database.'));
+
 app.get('/movies', (req, res) => res.json(topMovies));
 
-app.get('/', (req, res) => res.send('Welcome to the JMD Movie Database.'));
+app.get('/movies/:title', (req, res) => res.send('JSON Object with data on a single movie.'));
+
+app.get('/genres/:genreName', (req, res) => res.send('JSON Object with data on the genre.'));
+
+app.get('/directors/:directorName', (req, res) => res.send('JSON Object with data on the director.'));
+
+
+//UPDATE requests:
+app.put('/users/:id', (req, res) => res.send('Text confirmation that the user\'s ID has been updated.'));
+
+
+//DELETE requests:
+app.delete('/users/:id/:title', (req, res) => res.send('Text confirmation that the indicated movie has been removed.'));
+
+app.delete('/users/:id', (req, res) => res.send('Text confirmation that the indicated user account has been successfully deleted.'));
+
 
 //Public static file serving
 app.use(express.static('public'));
