@@ -40,7 +40,7 @@
                     <p>N/A</p>
                 </div>
                 <div class="text-box">
-                    <p>JSON Object {"Movies" : [List]}</p>
+                    <p>JSON array of "Movie" objects. Ex: [{...},{...}]</p>
                 </div>
             </div>
             <div class="req-container">
@@ -54,7 +54,7 @@
                     <p>N/A</p>
                 </div>
                 <div class="text-box">
-                    <p>JSON Object {"Movies" : {"title" : "data"}}</p>
+                    <p>Single JSON "Movie" Object. Ex: {"title": "data", "releaseYear": "data", etc.}</p>
                 </div>
             </div>
             <div class="req-container">
@@ -68,7 +68,7 @@
                     <p>N/A</p>
                 </div>
                 <div class="text-box">
-                    <p>JSON Object {"genreTitle": "desc"}</p>
+                    <p>Single JSON Object containing genre information. Ex: {"name": "data", "description": "data"}</p>
                 </div>
             </div>
             <div class="req-container">
@@ -82,7 +82,7 @@
                     <p>N/A</p>
                 </div>
                 <div class="text-box">
-                    <p>JSON Object {"directorName" : "data"}</p>
+                    <p>Single JSON Object containing director information. Ex: {"name": "data", "dob": "data", "dod": "data"}</p>
                 </div>
             </div>
             <div class="req-container">
@@ -93,10 +93,10 @@
                     <p>Creates a user account.</p>
                 </div>
                 <div class="text-box">
-                    <p>JSON Object containing a username and password.<br>{"username" : "data",<br>"password" : "data"}</p>
+                    <p>JSON Object containing a username and password values in the body.<br>{"username" : "data",<br>"password" : "data"}</p>
                 </div>
                 <div class="text-box">
-                    <p>Text confirmation that the new user has been created with the given credentials.</p>
+                    <p>Returns successfully created "User" JSON object.</p>
                 </div>
             </div>
             <div class="req-container">
@@ -107,10 +107,10 @@
                     <p>Allows user to update profile by ID.</p>
                 </div>
                 <div class="text-box">
-                    <p>N/A</p>
+                    <p>JSON "User" object containing values to be updated in the body. Ex: {"username": "new_value"} </p>
                 </div>
                 <div class="text-box">
-                    <p>Text confirmation that the user's ID has been updated to the given value.</p>
+                    <p>Returns updated "User" JSON object.</p>
                 </div>
             </div>
             <div class="req-container">

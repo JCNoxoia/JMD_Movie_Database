@@ -45,15 +45,12 @@ app.post('/users', async (req, res) => {
         });
 });
 
-app.post('/users/:username/:title', async (req, res) => {
-    await movies.findOne({title: req.params.title})
-        .then((movie) => {
-            users.updateOne(
-            {username: req.params.username},
-            {$push: {favMovies: movie._id}}
-        )})
+app.post('/users/:username/movies/:movieID', async (req, res) => {
+    await users.findOneAndUpdate(
+        {username: req.params.username},
+        {$addToSet: {favMovies: req.params.movieID}})
         .then((user) => {
-            res.status(201).send('Successfully added ' + req.params.title + ' to ' + user.username + '\'s favorites list.')
+            res.status(201).send('Successfully added movie to ' + user.username + '\'s favorites list.')
         })
         .catch((err) => {
             console.error(err);
@@ -119,7 +116,8 @@ app.put('/users/:username', async (req, res) => {
             password: req.body.password,
             email: req.body.email,
             dob: req.body.dob
-        }})
+        }},
+        {new: true})
         .then((user) => {
             res.status(200).send(user.username + '\'s account successfully updated.')
         })
@@ -131,18 +129,17 @@ app.put('/users/:username', async (req, res) => {
 
 
 //DELETE requests:
-app.delete('/users/:username/:title', async (req, res) => {
+app.delete('/users/:username/movies/:movieID', async (req, res) => {
     await users.findOneAndUpdate(
         {username: req.params.username},
-        {$pull: {favMovies: req.params.title}}
-    )
-    .then((user) => {
-        res.status(200).send(req.params.title + ' has been successfully removed from ' + user.username + '\'s favorites list.')
-    })
-    .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-    });
+        {$pull: {favMovies: req.params.movieID}})
+        .then((user) => {
+            res.status(200).send('Successfully removed movie to ' + user.username + '\'s favorites list.')
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
 app.delete('/users/:username', async (req, res) => {
