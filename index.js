@@ -15,6 +15,13 @@ mongoose.connect('mongodb://localhost:27017/jmdDB');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
+//import auth and passport
+let auth = require('./auth.js')(app);
+
+const passport = require('passport');
+require('./passport.js');
+
 //Server logging
 app.use(morgan('common'));
 
