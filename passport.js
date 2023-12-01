@@ -1,4 +1,4 @@
-const passport = reqauire('passport'),
+const passport = require('passport'),
     localStrategy = require('passport-local').Strategy,
     models = require('./models.js'),
     passportJWT = require('passport-jwt');
@@ -15,7 +15,7 @@ passport.use(
         },
         async (username, password, callback) => {
             console.log(`${username} ${password}`);
-            await users.findOne({Username: username})
+            await users.findOne({username: username})
             .then((user) => {
                 if (!user) {
                     console.log('incorrect username');
@@ -36,3 +36,15 @@ passport.use(
     )
 );
 
+passport.use(new JWTStrategy({
+    jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: 'y77$p77$'
+}, async (jwtPayload, callback) => {
+    return await users.findById(jwtPayload._id)
+    .then((user) => {
+        return callback(null, user);
+    })
+    .catch((err) => {
+        return callback(err)
+    });
+}));
