@@ -11,7 +11,7 @@ const {check, validationResult} = require('express-validator');
 
 //Local or Online Connection
 //mongoose.connect('mongodb://localhost:27017/jmdDB');
-mongoose.connect('process.env.CONNECTION_URI');
+mongoose.connect(process.env.CONNECTION_URI);
 
 
 //body-parser middleware
