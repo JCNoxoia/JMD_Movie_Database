@@ -146,23 +146,31 @@ app.get('/directors/:directorName', passport.authenticate('jwt', { session: fals
 
 
 //UPDATE requests:
-app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    await users.findOneAndUpdate(
-        {username: req.params.username},
-        {$set: {
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
-            dob: req.body.dob
-        }},
-        {new: true})
-        .then((user) => {
-            res.status(200).send(user.username + '\'s account successfully updated.')
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).send('Error: ' + err);
-        });
+app.put('/users/:username',
+    [
+        check('username', 'Username is required').isLength({min: 5}),
+        check('username', 'Username contains non-alphanumeric characters - not allowed').isAlphanumeric(),
+        check('password', 'Password is required').not().isEmpty(),
+        check('email', 'Email does not appear to be valid').isEmail()
+    ],
+    passport.authenticate('jwt', { session: false }),
+    async (req, res) => {
+        await users.findOneAndUpdate(
+            {username: req.params.username},
+            {$set: {
+                username: req.body.username,
+                password: req.body.password,
+                email: req.body.email,
+                dob: req.body.dob
+            }},
+            {new: true})
+            .then((user) => {
+                res.status(200).send(user.username + '\'s account successfully updated.')
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500).send('Error: ' + err);
+            });
 });
 
 
