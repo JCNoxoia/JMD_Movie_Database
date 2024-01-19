@@ -88,7 +88,7 @@ app.post('/users/:username/movies/:movieID', passport.authenticate('jwt', { sess
         {username: req.params.username},
         {$addToSet: {favMovies: req.params.movieID}})
         .then((user) => {
-            res.status(201).send('Successfully added movie to '/* + user.username + '\'s */ + 'favorites list.')
+            res.status(201).send('Successfully added movie to ' + user.username + '\'s favorites list.')
         })
         .catch((err) => {
             console.error(err);
