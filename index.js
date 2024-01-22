@@ -33,6 +33,10 @@ app.use(cors({
     }
 }));
 
+app.options('/*', (_, res) => {
+    res.sendStatus(200);
+});
+
 //import auth and passport
 let auth = require('./auth.js')(app);
 
