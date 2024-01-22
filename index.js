@@ -33,6 +33,7 @@ app.use(cors({
     }
 }));
 
+//For preflight requests
 app.options('/*', (_, res) => {
     res.sendStatus(200);
 });
