@@ -100,7 +100,7 @@ app.post('/users/:username/movies/:movieID', passport.authenticate('jwt', { sess
 //RETRIEVE requests:
 app.get('/', (req, res) => res.send('Welcome to the JMD Movie Database.'));
 
-app.get('/movies', async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await movies.find()
         .then((movies) => {
             res.status(200).json(movies);
